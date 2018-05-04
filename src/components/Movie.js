@@ -1,8 +1,9 @@
 import React from 'react';
 
-import LongText from './LongText.js'
+import LongText from './LongText.js';
+import DefaultBackground from './DefaultBackground.js';
 
-
+// rating and sim - flex row. Other flex column and rating with flex margin auto
 const Movie = ({ movie, loaded }) => {
   if (!loaded) { return '' }
 
@@ -10,11 +11,12 @@ const Movie = ({ movie, loaded }) => {
     ? 'released' : 'unreleased'}`
 
   return (
-    <div className={classNameRelise} >
+    <div className={classNameRelise}>
+
       <div className="o-movie-info">
         <div>
-          <div className="o-name-date">
-            <h1 className="c-movie-name">
+          <div className="o-title-date">
+            <h1 className="c-title">
               {movie.title}
             </h1>
 
@@ -37,21 +39,37 @@ const Movie = ({ movie, loaded }) => {
         </div>
 
         <LongText
-          className="c-overview"
+          className="o-overview"
           text={movie.overview}
           maxLength={250}
         />
 
-        <p className="c-vote">
-          Average rating: {movie.vote_average}
-        </p>
+        <div className="o-scores">
+          <p className="c-rating">
+            Average rating: {movie.vote_average}
+          </p>
+
+          {
+            // if movie is picked (first in movie list) then render nothing
+            movie.score
+              ? <p className="c-similarity">
+                  Similarity: {movie.score}
+                </p>
+                : ''
+          }
+        </div>
       </div>
-      
-      <div>
-        <img
-          className="c-poster"
-          src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
-        />
+
+      <div className="o-poster">
+        {
+          movie.poster_path
+            ? <img
+                className="c-poster"
+                src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
+              />
+
+              : <DefaultBackground className='o-poster-none' />
+        }
       </div>
     </div>
   )

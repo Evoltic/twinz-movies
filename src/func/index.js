@@ -153,7 +153,7 @@ const concatResults = (firstArray, secondArray, mainMovieId) => {
 }
 
 //-------------------------------------
-const getRequest = async (url) => {
+export const getRequest = async (url) => {
   let result;
 
   const response = await fetch(url);

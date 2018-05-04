@@ -15,7 +15,7 @@ class LongText extends React.Component {
 
   render() {
     return(
-      <div>
+      <div className={this.props.className}>
         {
           this.props.text.length < this.props.maxLength
             || this.state.showMoreClicked
@@ -29,7 +29,7 @@ class LongText extends React.Component {
                     {this.props.text.slice(0, this.props.maxLength)}
                   </p>
 
-                  <p onClick={this.onClick}>
+                  <p onClick={this.onClick} className="show-more">
                     Show more...
                   </p>
                 </div>
