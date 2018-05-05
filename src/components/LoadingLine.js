@@ -2,7 +2,7 @@ import React from 'react';
 
 
 const constParams = {
-  height: '3px',
+  height: '0.25em',
   backgroundColor: 'rgba(230, 8, 54, 0.9)',
   borderRadius: '10px'
 }

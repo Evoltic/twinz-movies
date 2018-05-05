@@ -1,4 +1,5 @@
-import { apiKey } from '../App.js'
+const apiKey = process.env.REACT_APP_MOVIE_API_KEY;
+
 
 
 const checkSameGenres = (similarMovie, mainMovieGenres) => {
@@ -101,7 +102,7 @@ const sortMovies = (authors, actors, genres, similarMovies) => {
     movie.score = score;
   }
 
-  const result = similarMovies.filter(movie => movie.score > 30);
+  const result = similarMovies.filter(movie => movie.score > 60);
   result.sort((prev, curr) =>  curr.score - prev.score);
 
   return result;
@@ -127,7 +128,10 @@ const getAdditionalInfo = async (movies) => {
 const concatResults = (firstArray, secondArray, mainMovieId) => {
   //checking repeated movies in arrays and then concat.
 
-  //replace firstArray with the array of movies which dont exist in secondArray
+  //first, checking the movie in firstArray and
+  //if the movie not found in secondArray - add the movie to mainArray
+  //Finally, concat mainArray with secondArray
+
   const mainArray = [];
 
   let duplicateFound = false;

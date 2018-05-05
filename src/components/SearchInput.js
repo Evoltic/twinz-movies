@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 
-import { getRequest } from '../func/index.js';
-import { apiKey } from '../App.js';
-
 import LoadingLine from './LoadingLine.js';
+import SelectionList from './SelectionList.js';
+
+import { getRequest } from '../func/index.js';
+
+
+const apiKey = process.env.REACT_APP_MOVIE_API_KEY;
 
 
 class SearchInput extends Component {
@@ -11,20 +14,22 @@ class SearchInput extends Component {
     super(props);
     this.state = {
       movieList: '',
-      className: 'c-movie'
+      className: 'div--display'
     }
   }
 
   onClick = movie => {
     this.props.onClick(movie.id);
-    // hide the selection list of movies
     this.setState({ movieList: '' });
     this.input.value = movie.title
   }
 
   onBlur = () => {
-    // hide the selection list of movies when the focus is gone
-    setTimeout(() => this.setState({ movieList: '' }), 350);
+    setTimeout(() => this.setState({ className: 'div--hide' }), 350);
+  }
+
+  onFocus = () => {
+    this.setState({ className: 'div--display' })
   }
 
 
@@ -36,16 +41,29 @@ class SearchInput extends Component {
     this.setState({ movieList : movies.results });
   }
 
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.props.onClick(this.state.movieList[0].id);
+    this.setState({ movieList: '' });
+    this.input.value = this.state.movieList[0].title;
+  }
+
 
   render() {
     return (
-      <div onBlur={this.onBlur}>
-        <form className="o-search">
 
+      // selection list is showing, if the focus on the input field and any text is typed
+      // if the focus is gone - hide the selection list
+
+      <div onBlur={this.onBlur} onFocus={this.onFocus}>
+
+        <form className='o-search' onSubmit={this.handleSubmit}>
           <input
-            className="c-search-input"
+            className='c-search-input'
             onChange={this.handleChange}
             ref={input => this.input = input}
+            placeholder='Type a movie title here'
+            autocomplete="off"
           />
 
           <LoadingLine
@@ -53,22 +71,12 @@ class SearchInput extends Component {
             loaded={this.props.loaded}
           />
 
-          <div className="o-selection-list">
-            {
-              this.state.movieList !== ''
-                ? this.state.movieList.map((movie, index) => (
-                    <p
-                      className="c-selection"
-                      key={movie.title + index}
-                      onClick={() => this.onClick(movie)}
-                    >
-                      {movie.title}
-                    </p>
-                  ))
-
-                  : ''
-            }
-          </div>
+          <SelectionList
+            // display or hide className
+            className={this.state.className}
+            list={this.state.movieList}
+            onClick={item => this.onClick(item)}
+          />
         </form>
       </div>
     )

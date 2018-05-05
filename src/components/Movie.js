@@ -2,16 +2,19 @@ import React from 'react';
 
 import LongText from './LongText.js';
 import DefaultBackground from './DefaultBackground.js';
+import GreenRedIndicator from './GreenRedIndicator.js'
 
-// rating and sim - flex row. Other flex column and rating with flex margin auto
-const Movie = ({ movie, loaded }) => {
+
+const Movie = ({ movie, loading, loaded }) => {
   if (!loaded) { return '' }
 
-  let classNameRelise = `o-movie o-movie--${movie.status === 'Released'
-    ? 'released' : 'unreleased'}`
+  let movieRelise = movie.status === 'Released' ? 'released' : 'unreleased';
 
   return (
-    <div className={classNameRelise}>
+    <div
+      key={movie.title}
+      className={`o-movie o-movie--${movieRelise}`}
+    >
 
       <div className="o-movie-info">
         <div>
@@ -41,22 +44,25 @@ const Movie = ({ movie, loaded }) => {
         <LongText
           className="o-overview"
           text={movie.overview}
-          maxLength={250}
+          maxLength={293}
         />
 
         <div className="o-scores">
-          <p className="c-rating">
+          <h3 className="c-rating">
             Average rating: {movie.vote_average}
-          </p>
+          </h3>
 
-          {
-            // if movie is picked (first in movie list) then render nothing
-            movie.score
-              ? <p className="c-similarity">
-                  Similarity: {movie.score}
-                </p>
-                : ''
-          }
+          <div className="o-similarity">
+            <GreenRedIndicator
+              className='c-color-indicator'
+              value={movie.score}
+              maxValue={160}
+              minValue={40}
+            />
+            <h4 className='c-similarity'>
+              {movie.score ? `Similarity: ${movie.score} / 210` : ''}
+            </h4>
+          </div>
         </div>
       </div>
 

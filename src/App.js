@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 
-import logo from './logo.svg';
 import './App.css';
 
 import SearchInput from './components/SearchInput.js';
 import Movie from './components/Movie.js';
 import SimilarMovies from './components/SimilarMovies.js';
+import Footer from './components/Footer.js'
 
 import getSimilarMovies from './func/index.js';
 import { getRequest } from './func/index.js';
 
-
-export const apiKey = '62a0ba815454735eefbcf34d34550f54';
-
+// use your own unique api key (get it on themoviedb)
+// first create .env outside /src and add REACT_APP_MOVIE_API_KEY=123456
+const apiKey = process.env.REACT_APP_MOVIE_API_KEY;
 
 
 class App extends Component {
@@ -21,6 +21,7 @@ class App extends Component {
     this.state = {
       movie: '',
       similarMovies: '',
+      // loading data
       loading: false,
       loaded: false
     }
@@ -49,21 +50,38 @@ class App extends Component {
       <div>
         <header>
           <h1 className='c-project-name'>
-            Twinz movie
+            A like movie
           </h1>
 
           <SearchInput
-            apiKey={apiKey}
             loading={this.state.loading}
             loaded={this.state.loaded}
             onClick={movieId => this.onMovieSelectClick(movieId)}
           />
         </header>
 
+        <div className='o-project-desc'>
+          <h3 className='c-project-desc'>
+            Select a movie and get a list of films, which closest to it by a spirit
+          </h3>
+        </div>
+
         <main>
-          <Movie movie={this.state.movie} loaded={this.state.loaded} />
-          <SimilarMovies movies={this.state.similarMovies} />
+          <Movie
+            movie={this.state.movie}
+            loading={this.state.loading}
+            loaded={this.state.loaded}
+          />
+          <SimilarMovies
+            movies={this.state.similarMovies}
+            loading={this.state.loading}
+            loaded={this.state.loaded}
+          />
         </main>
+
+        <footer>
+          <Footer />
+        </footer>
       </div>
     );
   }
