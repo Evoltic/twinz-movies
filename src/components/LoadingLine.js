@@ -35,14 +35,18 @@ class LoadingLine extends React.Component {
           if (rightMove) {
             // move line to right
             this.setState({ marginLeft: this.state.marginLeft + 1 });
-            this.state.marginLeft === 80 ? rightMove = false : ''
+            if (this.state.marginLeft === 80) {
+              rightMove = false
+            }
           } else {
             // move line to left
             this.setState({ marginLeft: this.state.marginLeft - 1 })
-            this.state.marginLeft === 0 ? rightMove = true : ''
+            if (this.state.marginLeft === 0) {
+              rightMove = true
+            }
           }
         }
-      }, 10);
+      }, 12);
     }
 
     // data loaded. give the line default position and width
@@ -63,7 +67,7 @@ class LoadingLine extends React.Component {
         } else {
           this.setState({ marginLeft: this.state.marginLeft - 1 })
         }
-      }, 10);
+      }, 12);
     }
   }
 

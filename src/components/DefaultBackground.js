@@ -8,7 +8,7 @@ const DefaultBackground = ({ className }) => (
       display: 'flex', justifyContent: 'center', alignItems: 'center'
     }}
   >
-    <img className="def-image" src={defaultIcon} />
+    <img className="def-image" src={defaultIcon} alt='' />
   </div>
 )
 

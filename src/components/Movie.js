@@ -16,23 +16,23 @@ const Movie = ({ movie, loading, loaded }) => {
       className={`o-movie o-movie--${movieRelise}`}
     >
 
-      <div className="o-movie-info">
+      <div className='o-movie-info'>
         <div>
-          <div className="o-title-date">
-            <h1 className="c-title">
+          <div className='o-title-date'>
+            <h1 className='c-title'>
               {movie.title}
             </h1>
 
-            <h3 className="c-date">
+            <h3 className='c-date'>
               {movie.release_date.slice(0, 4)}
             </h3>
           </div>
 
-          <ul className="o-genres">
+          <ul className='o-genres'>
             {
               movie.genres.map(genre => (
-                <li>
-                  <p className="c-genre">
+                <li key={genre.id + movie.title}>
+                  <p className='c-genre'>
                     {genre.name}
                   </p>
                 </li>
@@ -42,17 +42,17 @@ const Movie = ({ movie, loading, loaded }) => {
         </div>
 
         <LongText
-          className="o-overview"
+          className='o-overview'
           text={movie.overview}
           maxLength={293}
         />
 
-        <div className="o-scores">
-          <h3 className="c-rating">
+        <div className='o-scores'>
+          <h3 className='c-rating'>
             Average rating: {movie.vote_average}
           </h3>
 
-          <div className="o-similarity">
+          <div className='o-similarity'>
             <GreenRedIndicator
               className='c-color-indicator'
               value={movie.score}
@@ -66,12 +66,13 @@ const Movie = ({ movie, loading, loaded }) => {
         </div>
       </div>
 
-      <div className="o-poster">
+      <div className='o-poster'>
         {
           movie.poster_path
             ? <img
-                className="c-poster"
+                className='c-poster'
                 src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
+                alt='poster'
               />
 
               : <DefaultBackground className='o-poster-none' />

@@ -139,14 +139,14 @@ const concatResults = (firstArray, secondArray, mainMovieId) => {
   for (let i = 0; i < firstArray.length; i++) {
     for (let j = 0; j < secondArray.length; j++) {
 
-      firstArray[i].id === secondArray[j].id
-        ? duplicateFound = true
-          : ''
+      if (firstArray[i].id === secondArray[j].id) {
+        duplicateFound = true
+      }
     }
 
-    !duplicateFound
-      ? mainArray.push(firstArray[i])
-        : ''
+    if(!duplicateFound) {
+      mainArray.push(firstArray[i])
+    }
 
     duplicateFound = false
   }

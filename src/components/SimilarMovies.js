@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import Movie from './Movie.js'
 
@@ -11,14 +11,14 @@ const SimilarMovies = ({ movies, loading, loaded }) => {
   if (loaded && movies.length === 0) {
     return (
       <h1 className='c-nothing-found'>
-        Nothing found... 🤔
+        Nothing found... <span role='img' aria-label='hmm'>🤔</span>
       </h1>
     )
   }
 
   return (
     <ul className='o-similar-movies'>
-      <hr class='c-hr' />
+      <hr className='c-hr' />
 
       {
         movies.map((movie, index) => (

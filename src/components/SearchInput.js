@@ -63,7 +63,7 @@ class SearchInput extends Component {
             onChange={this.handleChange}
             ref={input => this.input = input}
             placeholder='Type a movie title here'
-            autocomplete="off"
+            autoComplete="off"
           />
 
           <LoadingLine
