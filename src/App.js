@@ -62,7 +62,8 @@ class App extends Component {
 
         <div className='o-project-desc'>
           <h3 className='c-project-desc'>
-            Select a movie and get a list of films, which closest to it by a spirit
+            Search for similar movies.
+            Select a movie and get a list of a related films.
           </h3>
         </div>
 
