@@ -4,11 +4,7 @@ import Movie from './Movie.js'
 
 
 const SimilarMovies = ({ movies, loading, loaded }) => {
-  if (movies === '') {
-    return <ul />
-  }
-
-  if (loaded && movies.length === 0) {
+  if (movies.length === 0) {
     return (
       <h1 className='c-nothing-found'>
         Nothing found... <span role='img' aria-label='hmm'>🤔</span>

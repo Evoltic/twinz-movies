@@ -24,6 +24,8 @@ const ValueToWordAndColor = ({ value, maxValue, minValue, className }) => {
     case percentages < 80:
       word = 'Good';
       break;
+    default:
+      word = ''
   }
 
   if (word) {

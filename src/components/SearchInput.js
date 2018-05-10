@@ -21,7 +21,7 @@ class SearchInput extends Component {
   onClick = movie => {
     this.props.onClick(movie.id);
     this.setState({ movieList: '' });
-    this.input.value = movie.title
+    this.input.value = movie.title;
   }
 
   onBlur = () => {
@@ -48,6 +48,22 @@ class SearchInput extends Component {
     this.input.value = this.state.movieList[0].title;
   }
 
+  componentDidMount() {
+    // simulate onClick when user enter a movie page and load similar movies
+    const path = this.props.location.pathname;
+    const isItMoviePath = /\/id[0-9]*/g.exec(path) !== null;
+
+    console.log(isItMoviePath);
+
+    if (isItMoviePath) {
+      const movie = path.split('/id')[1].split('-');
+      const movieId = movie[0];
+      const movieTitle = movie.slice(1).join(' ');
+
+      this.props.onClick(movieId);
+      this.input.value = movieTitle;
+    }
+  }
 
   render() {
     return (

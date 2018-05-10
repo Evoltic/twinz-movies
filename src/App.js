@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 
 import './App.css';
 
+import MoviePage from './components/MoviePage.js';
 import SearchInput from './components/SearchInput.js';
-import Movie from './components/Movie.js';
-import SimilarMovies from './components/SimilarMovies.js';
 import Footer from './components/Footer.js'
 
 import getSimilarMovies from './func/index.js';
 import { getRequest } from './func/index.js';
+
 
 // use your own unique api key (get it on themoviedb)
 // first create .env outside /src and add REACT_APP_MOVIE_API_KEY=123456
@@ -57,6 +57,7 @@ class App extends Component {
             loading={this.state.loading}
             loaded={this.state.loaded}
             onClick={movieId => this.onMovieSelectClick(movieId)}
+            {...this.props}
           />
         </header>
 
@@ -68,15 +69,12 @@ class App extends Component {
         </div>
 
         <main>
-          <Movie
+          <MoviePage
             movie={this.state.movie}
+            similarMovies={this.state.similarMovies}
             loading={this.state.loading}
             loaded={this.state.loaded}
-          />
-          <SimilarMovies
-            movies={this.state.similarMovies}
-            loading={this.state.loading}
-            loaded={this.state.loaded}
+            {...this.props}
           />
         </main>
 

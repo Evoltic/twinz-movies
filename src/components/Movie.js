@@ -6,8 +6,6 @@ import ValueToWordAndColor from './ValueToWordAndColor.js'
 
 
 const Movie = ({ movie, loading, loaded }) => {
-  if (!loaded) { return '' }
-
   let movieRelise = movie.status === 'Released' ? 'released' : 'unreleased';
 
   return (
