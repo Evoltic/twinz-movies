@@ -2,7 +2,7 @@ import React from 'react';
 
 import LongText from './LongText.js';
 import DefaultBackground from './DefaultBackground.js';
-import GreenRedIndicator from './GreenRedIndicator.js'
+import ValueToWordAndColor from './ValueToWordAndColor.js'
 
 
 const Movie = ({ movie, loading, loaded }) => {
@@ -53,15 +53,15 @@ const Movie = ({ movie, loading, loaded }) => {
           </h3>
 
           <div className='o-similarity'>
-            <GreenRedIndicator
+            <h4 className='c-similarity'>
+              {movie.score && `Similarity: `}
+            </h4>
+            <ValueToWordAndColor
               className='c-color-indicator'
               value={movie.score}
               maxValue={160}
               minValue={40}
             />
-            <h4 className='c-similarity'>
-              {movie.score ? `Similarity: ${movie.score} / 210` : ''}
-            </h4>
           </div>
         </div>
       </div>
