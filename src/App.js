@@ -63,7 +63,7 @@ class App extends Component {
         <div className='o-project-desc'>
           <h3 className='c-project-desc'>
             Search for similar movies.
-            Select a movie and get a list of a related films.
+            Select a movie and get a list of related films.
           </h3>
         </div>
 
