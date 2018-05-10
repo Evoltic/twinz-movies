@@ -53,8 +53,6 @@ class SearchInput extends Component {
     const path = this.props.location.pathname;
     const isItMoviePath = /\/id[0-9]*/g.exec(path) !== null;
 
-    console.log(isItMoviePath);
-
     if (isItMoviePath) {
       const movie = path.split('/id')[1].split('-');
       const movieId = movie[0];
