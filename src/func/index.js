@@ -247,7 +247,7 @@ const getAuthors = movie => {
 
 //-------------------------------------
 
-const getSimilarMovies = async (movie) => {
+const getSimilarMovies = async (movie = {}) => {
   // arrays with IDs
   const authors = getAuthors(movie);
   const mainActors = getActors(movie);

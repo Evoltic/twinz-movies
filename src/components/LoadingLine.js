@@ -49,8 +49,8 @@ class LoadingLine extends React.Component {
       }, 12);
     }
 
-    // data loaded. give the line default position and width
-    if (this.loadingIntervalStarted && this.props.loaded) {
+    // data loaded (or error). give the line default position and width
+    if (this.props.error || (this.loadingIntervalStarted && this.props.loaded)) {
       clearInterval(this.loadingInterval);
       this.loadingIntervalStarted = false;
 
