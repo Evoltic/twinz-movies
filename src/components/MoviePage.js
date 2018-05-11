@@ -31,12 +31,12 @@ const MoviePage = (props) => {
   return (
     <React.Fragment>
       <Route
-        exact path={process.env.PUBLIC_URL + '/' + newPath}
+        exact path={props.match.url + newPath}
         component={() => <MovieMovies {...props} /> }
       />
       {
         props.loaded && currentlyPath !== newPath &&
-          <Redirect to={ process.env.PUBLIC_URL + '/' + newPath} />
+          <Redirect to={'/' + newPath} />
       }
     </React.Fragment>
   )
