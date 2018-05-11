@@ -83,6 +83,7 @@ class SearchInput extends Component {
           <LoadingLine
             loading={this.props.loading}
             loaded={this.props.loaded}
+            error={this.props.error}
           />
 
           <SelectionList

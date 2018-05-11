@@ -39,9 +39,15 @@ class App extends Component {
 
     this.setState({ movie });
 
-    const movies = await getSimilarMovies(this.state.movie);
+    if (this.state.movie) {
+      const movies = await getSimilarMovies(this.state.movie);
 
-    this.setState({ similarMovies: movies, loading: false, loaded: true });
+      this.setState(
+        { similarMovies: movies, loading: false, loaded: true, error: false }
+      );
+    } else {
+      this.setState({ error: true });
+    }
   }
 
 
@@ -56,6 +62,7 @@ class App extends Component {
           <SearchInput
             loading={this.state.loading}
             loaded={this.state.loaded}
+            error={this.state.error}
             onClick={movieId => this.onMovieSelectClick(movieId)}
             {...this.props}
           />
