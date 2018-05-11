@@ -49,16 +49,13 @@ class SearchInput extends Component {
   }
 
   componentDidMount() {
-    // simulate onClick when user enter a movie page and load similar movies
     const path = this.props.location.pathname;
     const isItMoviePath = /\/id[0-9]*/g.exec(path) !== null;
 
     if (isItMoviePath) {
       const movie = path.split('/id')[1].split('-');
-      const movieId = movie[0];
       const movieTitle = movie.slice(1).join(' ');
-
-      this.props.onClick(movieId);
+      
       this.input.value = movieTitle;
     }
   }

@@ -50,6 +50,19 @@ class App extends Component {
     }
   }
 
+  componentDidMount() {
+    // simulate onMovieSelectClick when an user enter a movie page
+    // and load similar movies
+    const path = this.props.location.pathname;
+    const isItMoviePath = /\/id[0-9]*/g.exec(path) !== null;
+    
+    if (isItMoviePath) {
+      const movie = path.split('/id')[1].split('-');
+      const movieId = movie[0];
+
+      this.onMovieSelectClick(movieId);
+    }
+  }
 
   render() {
     return (
